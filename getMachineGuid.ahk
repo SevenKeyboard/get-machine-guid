@@ -11,7 +11,7 @@ class VersionManager_getMachineGuid
     static _ := VersionManager_getMachineGuid._init()
     _init()    {
         global
-        GETMACHINEGUID_VERSION := "1.0.0"
+        GETMACHINEGUID_VERSION := "1.0.1"
     }
 }
 getMachineGuid(default := "")    {
@@ -22,9 +22,11 @@ getMachineGuid(default := "")    {
         prevRegView := A_RegView
         setRegView 64
     }
-    regRead machineGuid, % "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography", % "MachineGuid"
-    if (errorLevel)
+    try  {
+        regRead machineGuid, % "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography", % "MachineGuid"
+    }  catch  {
         machineGuid := default
+    }
     if (isSet(prevRegView))
         setRegView % prevRegView
     critical % prevIsCritical
