@@ -11,7 +11,7 @@ class VersionManager_getMachineGuid
     static _ := this._init()
     static _init()    {
         global
-        GETMACHINEGUID_VERSION := "1.0.0"
+        GETMACHINEGUID_VERSION := "1.0.1"
     }
 }
 getMachineGuid(default := "")    {
